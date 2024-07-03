@@ -36,7 +36,7 @@ export default function ComponentPage() {
   return (
     <main>
       <section
-        className={clsx(mode === 'dark' ? 'bg-dark' : 'bg-white', color)}
+        className={clsx(mode === 'dark' ? 'bg-dark' : 'bg-white')}
       >
         <div
           className={clsx(

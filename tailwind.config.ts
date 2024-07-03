@@ -24,6 +24,7 @@ export default {
           950: 'rgb(var(--tw-color-primary-950) / <alpha-value>)',
         },
         dark: '#222222',
+        light: '#f9f9f9',
       },
       keyframes: {
         flicker: {
@@ -45,10 +46,28 @@ export default {
             backgroundPosition: '700px 0',
           },
         },
+        moon_1: {
+          '0%': {
+            transform: 'rotate(2deg)',
+          },
+          '99%': {
+            transform: 'rotate(-20deg)',
+          },
+        },
+        moon_2: {
+          '0%': {
+            transform: 'rotate(358deg)',
+          },
+          '99%': {
+            transform: 'rotate(363deg)',
+          },
+        }
       },
       animation: {
         flicker: 'flicker 3s linear infinite',
         shimmer: 'shimmer 1.3s linear infinite',
+        moon_1: 'moon_1 200s linear infinite',
+        moon_2: 'moon_2 250s linear infinite',
       },
     },
   },
