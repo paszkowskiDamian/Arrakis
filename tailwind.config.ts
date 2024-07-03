@@ -24,7 +24,7 @@ export default {
           950: 'rgb(var(--tw-color-primary-950) / <alpha-value>)',
         },
         dark: '#222222',
-        light: '#f9f9f9',
+        light: '#FFF6EC',
       },
       keyframes: {
         flicker: {
@@ -50,15 +50,15 @@ export default {
           '0%': {
             transform: 'rotate(2deg)',
           },
-          '99%': {
-            transform: 'rotate(-20deg)',
+          '100%': {
+            transform: 'rotate(-10deg)',
           },
         },
         moon_2: {
           '0%': {
             transform: 'rotate(358deg)',
           },
-          '99%': {
+          '100%': {
             transform: 'rotate(363deg)',
           },
         }
