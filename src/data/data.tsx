@@ -3,7 +3,7 @@ import { Chain, Token } from "@/types/enums";
 
 export const data: VaultData[] = [
   {
-    vaultAddress: '0x7226cd862bbaaf668c5c1814ce758828dabfc307',
+    vaultAddress: '0x4ca9fb1f302b6bd8421bad9debd22198eb6ab723',
     chain: Chain.Arbitrum,
     token1: Token.ETH,
     token2: Token.RETH,
@@ -16,8 +16,8 @@ export const data: VaultData[] = [
     chain: Chain.Ethereum,
     token1: Token.DAI,
     token2: Token.ETH,
-    tvl: '1,000,000',
-    apr: '10%',
+    tvl: '---',
+    apr: '---',
     strategy: 'Variable',
     commingSoon: true
   },

@@ -17,14 +17,13 @@ export const ArrakisAccount = () => {
           (!authenticationStatus ||
             authenticationStatus === 'authenticated');
 
-        console.log(ready, connected, account, chain, authenticationStatus, mounted);
         if (!ready) {
           return;
         }
 
         if (connected) {
           return (<div>
-            <Button isDarkBg onClick={openAccountModal}>
+            <Button isDarkBg onClick={() => openAccountModal()}>
               {chain.hasIcon && (
                 <div className="bg-dark w-6 h-6 rounded-full overflow-hidden mr-4">
                   {chain.iconUrl && (

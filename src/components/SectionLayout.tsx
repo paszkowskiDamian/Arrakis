@@ -1,4 +1,3 @@
-'use client';
 import { cn } from "@/lib/utils";
 
 export function SectionLayout({ children, className }: React.PropsWithChildren<{ className?: string }>) {
