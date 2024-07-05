@@ -32,17 +32,17 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         type='button'
         disabled={disabled}
         className={cn(
-          'inline-flex items-center rounded font-medium',
-          'focus-visible:ring-primary-500 focus:outline-none focus-visible:ring',
-          'shadow-sm',
+          'inline-flex items-center rounded font-thin',
+          'focus-visible:ring-primary-50 focus:outline-none focus-visible:ring',
           'transition-colors duration-75',
+          'rounded-full',
+          'py-2.5 px-4',
           variant === 'outline' && [
-            'rounded-full',
-            'text-light',
-            'border-light border',
+            isDarkBg ? 'text-light' : 'text-dark',
+            isDarkBg ? 'border-light border' : 'border-dark border',
             'hover:bg-primary-100 active:bg-primary-100 disabled:bg-primary-100',
             isDarkBg &&
-            'hover:bg-gray-800 active:bg-gray-800 disabled:bg-gray-800',
+            'hover:bg-primary-900 active:bg-primary-900 disabled:bg-primary-900',
           ],
           'disabled:cursor-not-allowed',
           isLoading &&
@@ -65,6 +65,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             <ImSpinner2 className='animate-spin' />
           </div>
         )}
+        {children}
       </button>
     );
   }
