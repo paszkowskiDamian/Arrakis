@@ -4,6 +4,9 @@ import * as React from 'react';
 import '@/styles/globals.css';
 
 import { siteConfig } from '@/constant/config';
+import { Navigation } from '@/components/Navigation';
+import { Providers } from '@/components/Providers';
+import { Footer } from '@/components/Footer';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -43,7 +46,13 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body className='bg-light'>{children}</body>
+      <body className='bg-light'>
+        <Providers>
+          <Navigation />
+          {children}
+          <Footer />
+        </Providers>
+      </body>
     </html>
   );
 }
