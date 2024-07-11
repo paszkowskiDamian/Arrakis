@@ -1,10 +1,10 @@
-import { Chain, Token } from "@/types/enums";
+import { Chain, TokenSymbol } from "@/types/Enums";
 
-export interface VaultData {
+export interface StaticVaultData {
   vaultAddress: string;
   chain: Chain;
-  token1: Token;
-  token2: Token;
+  token1: TokenSymbol;
+  token2: TokenSymbol;
   tvl: string;
   apr: string;
   strategy: string;

@@ -2,10 +2,10 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
-import { VaultData } from '@/types/VaultData';
+import { StaticVaultData } from '@/types/VaultData';
 import { tokenIcons } from '@/data/tokenIcons';
 
-export function VaultCard({ data }: { data: VaultData; }) {
+export function VaultCard({ data }: { data: StaticVaultData; }) {
   const router = useRouter();
 
   return (

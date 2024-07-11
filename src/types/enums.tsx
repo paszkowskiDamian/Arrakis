@@ -3,9 +3,10 @@ export enum Chain {
   Arbitrum = 'Arbitrum'
 }
 
-export enum Token {
+export enum TokenSymbol {
   ETH = 'ETH',
   DAI = 'DAI',
   WSTETH = 'wsTETH',
-  RETH = 'rETH'
+  RETH = 'rETH',
+  WETH = 'WETH'
 }

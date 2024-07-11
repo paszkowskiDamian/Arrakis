@@ -45,14 +45,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html>
-      <body className='bg-light flex flex-col  justify-items-stretch'>
-        <Providers>
-          <Navigation />
-          {children}
-          <Footer />
-        </Providers>
-      </body>
-    </html>
+    <div className='bg-dark min-h-screen'>
+      {children}
+    </div>
   );
 }
