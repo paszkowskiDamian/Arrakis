@@ -8,7 +8,7 @@ import { TokenBalance, formatTokenBalanceWithUnit } from "@/types/Token";
 import React, { SyntheticEvent, useCallback, useEffect } from "react";
 
 interface AllowanceFormProps {
-  account: Address;
+  user: Address;
   tokenAmountToAllow: TokenBalance;
   nextStep: () => void;
 }
@@ -21,11 +21,11 @@ enum AllowanceStage {
   TxFailed = "TxFailed",
 }
 
-export function AllowanceForm({ tokenAmountToAllow, nextStep, account }: AllowanceFormProps) {
+export function AllowanceForm({ tokenAmountToAllow, nextStep, user }: AllowanceFormProps) {
   const [formStage, setFormStage] = React.useState<AllowanceStage>(AllowanceStage.CheckingCurrentAllowance);
   const requestAllowance = useCallback(async () => {
-    const currentAllowanceResponse = await getCurrentAllowance(account, addresses.ARRAKIS_ROUTER, tokenAmountToAllow.token)
-    console.log(currentAllowanceResponse);
+    const currentAllowanceResponse = await getCurrentAllowance(user, addresses.ARRAKIS_ROUTER, tokenAmountToAllow.token)
+
     switch (currentAllowanceResponse.status) {
       case ResponseStatus.Success:
         if (currentAllowanceResponse.data.balance >= tokenAmountToAllow.balance) {
@@ -39,7 +39,7 @@ export function AllowanceForm({ tokenAmountToAllow, nextStep, account }: Allowan
         return;
     }
 
-  }, [tokenAmountToAllow, account]);
+  }, [tokenAmountToAllow, user]);
 
 
   useEffect(() => { requestAllowance() }, [])

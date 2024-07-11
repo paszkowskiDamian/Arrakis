@@ -3,18 +3,17 @@ import Button from "@/components/buttons/Button";
 import { VaultData } from "@/contractCalls/vault";
 import { TokenBalance, makeTokenBalance, makeTokenBalanceFromBaseUnit } from "@/types/Token";
 import React, { SyntheticEvent, useCallback, useState } from "react";
-import { useAccount } from "wagmi";
 import { ArrakisConnectButton } from "@/components/buttons/ArrakisConnectButton";
 import { getProportionalAmount1, getProportionalAmount0, TokenInput } from "../TokenInput";
 import { FormState } from "./FormState";
+import { Address } from "@/types/Address";
 
 interface DepositFormProps {
   vaultData: VaultData;
+  user: Address | undefined;
   onSubmit: (formState: FormState) => void;
 }
-export function DepositForm({ vaultData, onSubmit: onFormSubmit }: DepositFormProps) {
-  const account = useAccount();
-  // useUserTokenBalance(vaultData.token0.token.address)
+export function DepositForm({ vaultData, onSubmit: onFormSubmit, user }: DepositFormProps) {
   const [token0Balance, setToken0Balance] = useState<TokenBalance>(makeTokenBalance(0n, vaultData.token0.token));
   const [token1Balance, setToken1Balance] = useState<TokenBalance>(makeTokenBalance(0n, vaultData.token1.token));
 
@@ -44,12 +43,12 @@ export function DepositForm({ vaultData, onSubmit: onFormSubmit }: DepositFormPr
     <div>
       <form onSubmit={onSubmit}>
         <div>
-          <TokenInput name="token0Balance" updateTokenBalance={onBalance0Change} tokenBalance={token0Balance} />
-          <TokenInput name="token1Balance" updateTokenBalance={onBalance1Change} tokenBalance={token1Balance} />
+          <TokenInput user={user} name="token0Balance" updateTokenBalance={onBalance0Change} tokenBalance={token0Balance} />
+          <TokenInput user={user} name="token1Balance" updateTokenBalance={onBalance1Change} tokenBalance={token1Balance} />
         </div>
-        {account.address && <Button type="submit" variant="outline">Approve WETH</Button>}
+        {user && <Button type="submit" variant="outline">Approve WETH</Button>}
       </form>
-      {!account.address && <ArrakisConnectButton />}
+      {!user && <ArrakisConnectButton />}
     </div>
   );
 }

@@ -26,8 +26,8 @@ export function Form({ vaultData }: FormProps) {
   const [stage, setStage] = useState<FormStages>(FormStages.DepositForm);
   const [formState, setFormState] = useState<FormState>();
 
-  const account = useAccount();
-  const accountAddress = account.address && makeAddress(account.address);
+  const user = useAccount();
+  const userAddress = user.address && makeAddress(user.address);
 
   const onDepositFormSubmit = useCallback((formState: FormState) => {
     setFormState(formState);
@@ -47,11 +47,11 @@ export function Form({ vaultData }: FormProps) {
 
   switch (stage) {
     case FormStages.DepositForm:
-      return <DepositForm vaultData={vaultData} onSubmit={onDepositFormSubmit} />;
+      return <DepositForm vaultData={vaultData} onSubmit={onDepositFormSubmit} user={userAddress} />;
     case FormStages.AllowanceToken0Form:
-      return accountAddress && formState && <AllowanceForm nextStep={onAllowance0Success} account={accountAddress} tokenAmountToAllow={formState.token0Balance} />;
+      return userAddress && formState && <AllowanceForm nextStep={onAllowance0Success} user={userAddress} tokenAmountToAllow={formState.token0Balance} />;
     case FormStages.AllowanceToken1Form:
-      return accountAddress && formState && <AllowanceForm nextStep={onAllowance1Success} account={accountAddress} tokenAmountToAllow={formState.token1Balance} />;
+      return userAddress && formState && <AllowanceForm nextStep={onAllowance1Success} user={userAddress} tokenAmountToAllow={formState.token1Balance} />;
     case FormStages.ConfirmForm:
       return <ConfirmForm confirm={onConfirmFormSubmit} />;
     case FormStages.Success:

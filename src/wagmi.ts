@@ -11,7 +11,7 @@ export const wagmiConfig = getDefaultConfig({
     arbitrum,
   ],
   transports: {
-    [arbitrum.id]: http('https://arb-mainnet.g.alchemy.com/v2/7RdqH7_Q9ZPr03QIpsYzmmZ678FBTRO1')
+    [arbitrum.id]: http(process.env.NEXT_PUBLIC_ARBITRUM_RPC_URL)
   },
   ssr: true,
 });
