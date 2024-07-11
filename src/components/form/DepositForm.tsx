@@ -9,13 +9,14 @@ import { FormState } from "./FormState";
 import { Address } from "@/types/Address";
 
 interface DepositFormProps {
-  vaultData: VaultData;
-  user: Address | undefined;
-  onSubmit: (formState: FormState) => void;
+  vaultData: VaultData
+  formState: FormState
+  user: Address | undefined
+  onSubmit: (formState: FormState) => void
 }
-export function DepositForm({ vaultData, onSubmit: onFormSubmit, user }: DepositFormProps) {
-  const [token0Balance, setToken0Balance] = useState<TokenBalance>(makeTokenBalance(0n, vaultData.token0.token));
-  const [token1Balance, setToken1Balance] = useState<TokenBalance>(makeTokenBalance(0n, vaultData.token1.token));
+export function DepositForm({ vaultData, onSubmit: onFormSubmit, user, formState }: DepositFormProps) {
+  const [token0Balance, setToken0Balance] = useState<TokenBalance>(formState.token0Balance);
+  const [token1Balance, setToken1Balance] = useState<TokenBalance>(formState.token1Balance);
 
   const onBalance0Change = useCallback((tokenBalance: TokenBalance) => {
     setToken0Balance(tokenBalance);
@@ -42,11 +43,12 @@ export function DepositForm({ vaultData, onSubmit: onFormSubmit, user }: Deposit
   return (
     <div>
       <form onSubmit={onSubmit}>
+        <h2>Deposit</h2>
         <div>
           <TokenInput user={user} name="token0Balance" updateTokenBalance={onBalance0Change} tokenBalance={token0Balance} />
           <TokenInput user={user} name="token1Balance" updateTokenBalance={onBalance1Change} tokenBalance={token1Balance} />
         </div>
-        {user && <Button type="submit" variant="outline">Approve WETH</Button>}
+        {user && <Button type="submit" variant="outline">Continue</Button>}
       </form>
       {!user && <ArrakisConnectButton />}
     </div>

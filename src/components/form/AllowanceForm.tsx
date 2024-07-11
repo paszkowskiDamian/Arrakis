@@ -11,6 +11,7 @@ interface AllowanceFormProps {
   user: Address;
   tokenAmountToAllow: TokenBalance;
   nextStep: () => void;
+  backToEdditing: () => void;
 }
 
 enum AllowanceStage {
@@ -21,15 +22,20 @@ enum AllowanceStage {
   TxFailed = "TxFailed",
 }
 
-export function AllowanceForm({ tokenAmountToAllow, nextStep, user }: AllowanceFormProps) {
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+export function AllowanceForm({ tokenAmountToAllow, nextStep, user, backToEdditing }: AllowanceFormProps) {
   const [formStage, setFormStage] = React.useState<AllowanceStage>(AllowanceStage.CheckingCurrentAllowance);
-  const requestAllowance = useCallback(async () => {
+  const checkAllowance = useCallback(async () => {
     const currentAllowanceResponse = await getCurrentAllowance(user, addresses.ARRAKIS_ROUTER, tokenAmountToAllow.token)
 
     switch (currentAllowanceResponse.status) {
       case ResponseStatus.Success:
         if (currentAllowanceResponse.data.balance >= tokenAmountToAllow.balance) {
-          setFormStage(AllowanceStage.AllowanceConfirmed)
+          await delay(900)
+          nextStep();
         } else {
           setFormStage(AllowanceStage.WaitingForConfirmation)
         }
@@ -42,26 +48,32 @@ export function AllowanceForm({ tokenAmountToAllow, nextStep, user }: AllowanceF
   }, [tokenAmountToAllow, user]);
 
 
-  useEffect(() => { requestAllowance() }, [])
+  useEffect(() => { checkAllowance() }, [tokenAmountToAllow.token.symbol])
 
   const onSubmit = useCallback(
     async (e: SyntheticEvent<HTMLFormElement>) => {
       e.preventDefault();
       setFormStage(AllowanceStage.TxPending);
       try {
-        const approval = await approveToken(addresses.ARRAKIS_ROUTER, tokenAmountToAllow);
-        setFormStage(AllowanceStage.AllowanceConfirmed);
-        console.log(approval);
+        await approveToken(addresses.ARRAKIS_ROUTER, tokenAmountToAllow);
+        checkAllowance()
       } catch (e) {
         setFormStage(AllowanceStage.TxFailed);
       }
     },
-    []
+    [tokenAmountToAllow, user, nextStep, checkAllowance]
   );
 
   return (
     <form onSubmit={onSubmit}>
-      <h4>Set {tokenAmountToAllow.token.symbol} Allowance</h4>
+      <h2>
+        {formStage === AllowanceStage.CheckingCurrentAllowance
+          ? <span>Checking </span>
+          : <span>Set </span>
+        }
+        {tokenAmountToAllow.token.symbol}
+        <span> Allowance</span>
+      </h2>
       {
         formStage === AllowanceStage.CheckingCurrentAllowance && (
           <p className="mb-4 w-[70%]">Checking current allowance...</p>
@@ -73,6 +85,7 @@ export function AllowanceForm({ tokenAmountToAllow, nextStep, user }: AllowanceF
             <p className="mb-4 w-[70%]">
               In order to deposit into vault you need to allow <a className="text-primary-600 underline" href="">Arrakis Router</a> to use your {formatTokenBalanceWithUnit(tokenAmountToAllow)}
             </p>
+            <Button className="mr-4" variant="outline" onClick={backToEdditing}>Back to edditing</Button>
             <Button type="submit" variant="outline">Set allowance</Button>
           </div>
         )

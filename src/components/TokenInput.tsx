@@ -45,7 +45,7 @@ export function TokenInput({ tokenBalance, updateTokenBalance, name, error, user
 
   useEffect(() => {
     getUserBalanceRequest()
-  })
+  }, [])
 
   const onChange = useCallback((e: SyntheticEvent<HTMLInputElement>) => {
     const newToken0Balance = makeTokenBalanceFromBaseUnit(e.currentTarget.value, tokenBalance.token);
