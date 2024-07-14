@@ -1,9 +1,12 @@
 'use client';
-import * as React from 'react';
-import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
-import { StaticVaultData } from '@/types/VaultData';
+import * as React from 'react';
+
+import { cn } from '@/lib/utils';
+
 import { tokenIcons } from '@/data/tokenIcons';
+
+import { StaticVaultData } from '@/types/VaultData';
 
 export function VaultCard({ data }: { data: StaticVaultData }) {
   const router = useRouter();

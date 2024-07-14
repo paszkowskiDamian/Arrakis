@@ -1,13 +1,15 @@
 'use client';
-import { AnimatedLogo } from '@/components/AnimatedLogo';
+import React from 'react';
+
 import { Card } from '@/components/CardProps';
+import { Form } from '@/components/form/Form';
 import { SectionLayout } from '@/components/SectionLayout';
 import { VaultDisplayHeader } from '@/components/VaultDisplayHeader';
 import { VaultStat } from '@/components/VaultStat';
-import { Form } from '@/components/form/Form';
+
 import { VaultData } from '@/contractCalls/vault';
+
 import { formatTokenBalanceWithUnit } from '@/types/Token';
-import React from 'react';
 
 export function VaultDisplay({ vaultData }: { vaultData: VaultData }) {
   return (

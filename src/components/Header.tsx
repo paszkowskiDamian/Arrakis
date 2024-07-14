@@ -1,8 +1,9 @@
 'use client';
 import * as React from 'react';
-import { ArrakisConnectButton } from '../components/buttons/ArrakisConnectButton';
+
 import { AnimatedLogo } from '../components/AnimatedLogo';
 import { Arc } from '../components/Arc';
+import { ArrakisConnectButton } from '../components/buttons/ArrakisConnectButton';
 
 export function Header() {
   return (

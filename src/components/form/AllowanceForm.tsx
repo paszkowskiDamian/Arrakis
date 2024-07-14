@@ -1,11 +1,14 @@
 'use client';
+import React, { SyntheticEvent, useCallback, useEffect } from 'react';
+
 import Button from '@/components/buttons/Button';
+
 import { addresses } from '@/constants/addresses';
 import { approveToken, getCurrentAllowance } from '@/contractCalls/erc20';
+
 import { Address } from '@/types/Address';
 import { ResponseStatus } from '@/types/ChainResponse';
-import { TokenBalance, formatTokenBalanceWithUnit } from '@/types/Token';
-import React, { SyntheticEvent, useCallback, useEffect } from 'react';
+import { formatTokenBalanceWithUnit,TokenBalance } from '@/types/Token';
 
 interface AllowanceFormProps {
   user: Address;

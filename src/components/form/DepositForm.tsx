@@ -1,20 +1,23 @@
 'use client';
-import Button from '@/components/buttons/Button';
-import { VaultData } from '@/contractCalls/vault';
-import {
-  TokenBalance,
-  makeTokenBalance,
-  makeTokenBalanceFromBaseUnit,
-} from '@/types/Token';
 import React, { SyntheticEvent, useCallback, useState } from 'react';
+
 import { ArrakisConnectButton } from '@/components/buttons/ArrakisConnectButton';
+import Button from '@/components/buttons/Button';
+
+import { VaultData } from '@/contractCalls/vault';
+
+import { FormState } from './FormState';
 import {
-  getProportionalAmount1,
   getProportionalAmount0,
+  getProportionalAmount1,
   TokenInput,
 } from '../TokenInput';
-import { FormState } from './FormState';
+
 import { Address } from '@/types/Address';
+import {
+  makeTokenBalanceFromBaseUnit,
+  TokenBalance,
+} from '@/types/Token';
 
 interface DepositFormProps {
   vaultData: VaultData;

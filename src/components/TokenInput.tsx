@@ -1,17 +1,19 @@
 'use client';
 import React, { SyntheticEvent, useCallback, useEffect, useState } from 'react';
 
-import { VaultData } from '@/contractCalls/vault';
 import { TokenIcon } from '@/data/tokenIcons';
+
+import { getTokenBalance } from '@/contractCalls/erc20';
+import { VaultData } from '@/contractCalls/vault';
+
+import { Address } from '@/types/Address';
 import {
-  TokenBalance,
+  formatTokenBalance,
   formatTokenBalanceWithUnit,
   makeTokenBalance,
   makeTokenBalanceFromBaseUnit,
-  formatTokenBalance,
+  TokenBalance,
 } from '@/types/Token';
-import { Address } from '@/types/Address';
-import { getTokenBalance } from '@/contractCalls/erc20';
 
 const percentagePrecision = 10000n;
 export function getProportionalAmount1(

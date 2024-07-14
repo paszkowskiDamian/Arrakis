@@ -1,13 +1,15 @@
 'use client';
 import Head from 'next/head';
 import * as React from 'react';
+import '@/lib/env';
+
 import '@rainbow-me/rainbowkit/styles.css';
 
-import '@/lib/env';
-import { VaultCard } from '@/components/VaultCard';
-import { SectionLayout } from '@/components/SectionLayout';
 import { data } from '@/data/data';
+
 import { Header } from '@/components/Header';
+import { SectionLayout } from '@/components/SectionLayout';
+import { VaultCard } from '@/components/VaultCard';
 
 export default function HomePage() {
   return (

@@ -1,5 +1,6 @@
-import { Address } from '@/types/Address';
 import { formatUnits, isAddress, parseUnits } from 'viem';
+
+import { Address } from '@/types/Address';
 
 export type Token = {
   address: Address;
@@ -74,7 +75,7 @@ export function isToken(obj: any): obj is Token {
   return false;
 }
 
-export function isTokenBalance(obj: any): obj is TokenBalance {
+export function isTokenBalance(obj: unknown): obj is TokenBalance {
   if (
     typeof obj === 'object' &&
     'balance' in obj &&

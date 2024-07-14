@@ -1,13 +1,15 @@
+import { writeContract } from '@wagmi/core';
+import { zeroAddress } from 'viem';
+
 import { arrakisRouterAbi } from '@/abis/arrakisRouter.abi';
 import { addresses } from '@/constants/addresses';
 import { getMintAmounts } from '@/contractCalls/resolver';
+import { wagmiConfig } from '@/wagmi';
+
 import { Address } from '@/types/Address';
 import { ResponseStatus } from '@/types/ChainResponse';
 import { Hash, makeHash } from '@/types/Hash';
 import { TokenBalance } from '@/types/Token';
-import { wagmiConfig } from '@/wagmi';
-import { writeContract } from '@wagmi/core';
-import { parseGwei, zeroAddress } from 'viem';
 
 export async function addLiquidity(
   amount0: TokenBalance,

@@ -1,5 +1,5 @@
-import { StaticVaultData } from '@/types/VaultData';
 import { Chain, TokenSymbol } from '@/types/Enums';
+import { StaticVaultData } from '@/types/VaultData';
 
 export const data: StaticVaultData[] = [
   {

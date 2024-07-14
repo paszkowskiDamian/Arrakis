@@ -1,12 +1,14 @@
 'use client';
-import Button from '@/components/buttons/Button';
-import { FormState } from '@/components/form/FormState';
-import { Hash } from '@/types/Hash';
-import { formatTokenBalanceWithUnit } from '@/types/Token';
-import { wagmiConfig } from '@/wagmi';
 import { waitForTransactionReceipt } from '@wagmi/core';
 import React, { useCallback } from 'react';
-import { set } from 'zod';
+
+import Button from '@/components/buttons/Button';
+import { FormState } from '@/components/form/FormState';
+
+import { wagmiConfig } from '@/wagmi';
+
+import { Hash } from '@/types/Hash';
+import { formatTokenBalanceWithUnit } from '@/types/Token';
 
 interface ConfirmFormProps {
   formState: FormState;

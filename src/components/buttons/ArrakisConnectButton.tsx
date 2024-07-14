@@ -1,8 +1,10 @@
 'use client';
-import * as React from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
-import Button from '@/components/buttons/Button';
+import * as React from 'react';
+
 import { cn } from '@/lib/utils';
+
+import Button from '@/components/buttons/Button';
 
 interface ArrakisConnectButtonProps {
   className?: string;
@@ -41,8 +43,7 @@ export const ArrakisConnectButton = ({
             ])}
             aria-hidden={!ready}
           >
-            {
-              <Button
+            <Button
                 onClick={openConnectModal}
                 className={cn([connected && ['invisible']])}
                 isDarkBg={isDarkBg}
@@ -50,7 +51,6 @@ export const ArrakisConnectButton = ({
               >
                 Connect Wallet
               </Button>
-            }
           </div>
         );
       }}

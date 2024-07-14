@@ -1,6 +1,7 @@
 'use client';
-import { ChainResponse } from '@/types/ChainResponse';
 import React from 'react';
+
+import { ChainResponse } from '@/types/ChainResponse';
 
 export type LoadingState = {
   status: 'loading';

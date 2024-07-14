@@ -1,15 +1,17 @@
-import { erc20Abi } from '@/abis/erc20.abi';
-import { Address } from '@/types/Address';
-import { Token, TokenBalance, makeTokenBalance } from '@/types/Token';
-import { wagmiConfig } from '@/wagmi';
-
 import {
   readContract,
   readContracts,
   waitForTransactionReceipt,
   writeContract,
 } from '@wagmi/core';
+
+import { erc20Abi } from '@/abis/erc20.abi';
+import { wagmiConfig } from '@/wagmi';
+
 import { ChainResponse, ResponseStatus } from '../types/ChainResponse';
+
+import { Address } from '@/types/Address';
+import { makeTokenBalance,Token, TokenBalance } from '@/types/Token';
 
 export async function approveToken(spender: Address, amount: TokenBalance) {
   const hash = await writeContract(wagmiConfig, {

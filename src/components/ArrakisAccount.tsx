@@ -1,7 +1,8 @@
 'use client';
-import * as React from 'react';
-import Button from '@/components/buttons/Button';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import * as React from 'react';
+
+import Button from '@/components/buttons/Button';
 
 export const ArrakisAccount = () => {
   return (

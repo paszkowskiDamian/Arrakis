@@ -2,16 +2,19 @@
 import React, { useCallback, useState } from 'react';
 import { useAccount } from 'wagmi';
 
-import { VaultData } from '@/contractCalls/vault';
-import { Address, makeAddress } from '@/types/Address';
-import { DepositForm } from '@/components/form/DepositForm';
-import { ConfirmForm } from '@/components/form/ConfirmForm';
-import { FormState } from '@/components/form/FormState';
-import { AllowanceForm } from '@/components/form/AllowanceForm';
-import { makeTokenBalance } from '@/types/Token';
 import { cn } from '@/lib/utils';
+
+import { AllowanceForm } from '@/components/form/AllowanceForm';
+import { ConfirmForm } from '@/components/form/ConfirmForm';
+import { DepositForm } from '@/components/form/DepositForm';
+import { FormState } from '@/components/form/FormState';
+
 import { addLiquidity } from '@/contractCalls/router';
+import { VaultData } from '@/contractCalls/vault';
+
+import { Address, makeAddress } from '@/types/Address';
 import { Hash } from '@/types/Hash';
+import { makeTokenBalance } from '@/types/Token';
 
 enum FormStages {
   DepositForm = 'DepositForm',

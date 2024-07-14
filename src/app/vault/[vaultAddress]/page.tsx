@@ -1,12 +1,17 @@
 'use client';
-import { SectionLayout } from '@/components/SectionLayout';
-import { readVaultData } from '@/contractCalls/vault';
-import { useRequest } from '@/hooks/useRequest';
-import { Address } from '@/types/Address';
 import React, { useCallback } from 'react';
+
+import { useRequest } from '@/hooks/useRequest';
+
+import { SectionLayout } from '@/components/SectionLayout';
 import { VaultDisplay } from '@/components/VaultDisplay';
-import { Loading } from '../../../components/Loading';
+
+import { readVaultData } from '@/contractCalls/vault';
+
 import { ErrorComp } from '../../../components/ErrorComp';
+import { Loading } from '../../../components/Loading';
+
+import { Address } from '@/types/Address';
 
 export default function VaultPage({
   params,

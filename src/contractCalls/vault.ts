@@ -1,13 +1,14 @@
 import { readContracts } from '@wagmi/core';
 
+import { arrakisHelperAbi } from '@/abis/arrakisHelper.abi';
 import { arrakisVaultAbi } from '@/abis/arrakisVault.abi';
 import { wagmiConfig } from '@/wagmi';
-import { TokenBalance, makeTokenBalance } from '../types/Token';
-import { Address } from '../types/Address';
+
 import { readTokenData } from './erc20';
-import { arrakisHelperAbi } from '@/abis/arrakisHelper.abi';
 import { addresses } from '../constants/addresses';
+import { Address } from '../types/Address';
 import { ChainResponse, ResponseStatus } from '../types/ChainResponse';
+import { makeTokenBalance, TokenBalance } from '../types/Token';
 
 export interface VaultData {
   name: string;
@@ -55,8 +56,8 @@ export async function readVaultData(
     }
 
     const [token0, token1] = await Promise.all([
-      readTokenData(resources[1].result! as Address),
-      readTokenData(resources[2].result! as Address),
+      readTokenData(resources[1].result as Address),
+      readTokenData(resources[2].result as Address),
     ]);
 
     if (

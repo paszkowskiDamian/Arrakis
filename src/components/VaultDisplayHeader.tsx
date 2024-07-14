@@ -1,7 +1,9 @@
 'use client';
-import { SectionLayout } from '@/components/SectionLayout';
-import { TokenIcon } from '@/data/tokenIcons';
 import React from 'react';
+
+import { TokenIcon } from '@/data/tokenIcons';
+
+import { SectionLayout } from '@/components/SectionLayout';
 
 export interface VaultDisplayHeaderProps {
   token0Symbol: string;

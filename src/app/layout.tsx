@@ -3,10 +3,11 @@ import * as React from 'react';
 
 import '@/styles/globals.css';
 
-import { siteConfig } from '@/constants/config';
+import { Footer } from '@/components/Footer';
 import { Navigation } from '@/components/Navigation';
 import { Providers } from '@/components/Providers';
-import { Footer } from '@/components/Footer';
+
+import { siteConfig } from '@/constants/config';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

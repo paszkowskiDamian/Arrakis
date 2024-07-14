@@ -1,10 +1,12 @@
-import { arrakisResolverAbi } from '@/abis/arrakisResolver.abi';
-import { addresses } from '@/constants/addresses';
-import { ChainResponse, ResponseStatus } from '@/types/ChainResponse';
-import { TokenBalance } from '@/types/Token';
-import { wagmiConfig } from '@/wagmi';
 import { readContract } from '@wagmi/core';
 import { Address } from 'viem';
+
+import { arrakisResolverAbi } from '@/abis/arrakisResolver.abi';
+import { addresses } from '@/constants/addresses';
+import { wagmiConfig } from '@/wagmi';
+
+import { ChainResponse, ResponseStatus } from '@/types/ChainResponse';
+import { TokenBalance } from '@/types/Token';
 
 interface MintAmounts {
   amount0Min: bigint;
