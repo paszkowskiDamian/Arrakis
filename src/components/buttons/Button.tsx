@@ -42,11 +42,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             isDarkBg ? 'border-light border' : 'border-dark border',
             'hover:bg-primary-100 active:bg-primary-100 disabled:bg-primary-100',
             isDarkBg &&
-            'hover:bg-primary-900 active:bg-primary-900 disabled:bg-primary-900',
+              'hover:bg-primary-900 active:bg-primary-900 disabled:bg-primary-900',
           ],
           'disabled:cursor-not-allowed',
           isLoading &&
-          'relative text-transparent transition-none hover:text-transparent disabled:cursor-wait',
+            'relative text-transparent transition-none hover:text-transparent disabled:cursor-wait',
           className
         )}
         {...rest}

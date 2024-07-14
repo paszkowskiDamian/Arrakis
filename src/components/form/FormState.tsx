@@ -1,5 +1,5 @@
 'use client';
-import { TokenBalance } from "@/types/Token";
+import { TokenBalance } from '@/types/Token';
 
 export interface FormState {
   token0Balance: TokenBalance;

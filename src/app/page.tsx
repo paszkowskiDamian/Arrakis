@@ -18,11 +18,18 @@ export default function HomePage() {
       <Header />
       <SectionLayout>
         <h2>Arrakis V2 vaults</h2>
-        <p className='max-w-[40rem]'>Arrakis V2 is a next-generation trading infrastructure built on top of Uniswap V3. Its unique functionalities allow the creation and automated execution of sophisticated trading strategies on Uniswap V3 that previously were only feasible on CEXs.</p>
+        <p className='max-w-[40rem]'>
+          Arrakis V2 is a next-generation trading infrastructure built on top of
+          Uniswap V3. Its unique functionalities allow the creation and
+          automated execution of sophisticated trading strategies on Uniswap V3
+          that previously were only feasible on CEXs.
+        </p>
         <div className='my-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-9 gap-x-5'>
-          {data.map((vault, index) => <VaultCard key={index} data={vault} />)}
+          {data.map((vault, index) => (
+            <VaultCard key={index} data={vault} />
+          ))}
         </div>
       </SectionLayout>
-    </main >
+    </main>
   );
 }

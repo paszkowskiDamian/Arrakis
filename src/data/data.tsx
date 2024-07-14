@@ -1,5 +1,5 @@
-import { StaticVaultData } from "@/types/VaultData";
-import { Chain, TokenSymbol } from "@/types/Enums";
+import { StaticVaultData } from '@/types/VaultData';
+import { Chain, TokenSymbol } from '@/types/Enums';
 
 export const data: StaticVaultData[] = [
   {
@@ -9,7 +9,7 @@ export const data: StaticVaultData[] = [
     token2: TokenSymbol.RETH,
     tvl: '1,000,000',
     apr: '10%',
-    strategy: 'LST stable'
+    strategy: 'LST stable',
   },
   {
     vaultAddress: '0x000000000',
@@ -19,7 +19,7 @@ export const data: StaticVaultData[] = [
     tvl: '---',
     apr: '---',
     strategy: 'Variable',
-    commingSoon: true
+    commingSoon: true,
   },
   {
     vaultAddress: '0x000000000',
@@ -29,6 +29,6 @@ export const data: StaticVaultData[] = [
     tvl: '---',
     apr: '---',
     strategy: 'Stable',
-    commingSoon: true
+    commingSoon: true,
   },
 ];

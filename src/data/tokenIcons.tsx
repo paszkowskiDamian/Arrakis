@@ -1,9 +1,15 @@
-import { TokenSymbol } from "@/types/Enums";
+import { TokenSymbol } from '@/types/Enums';
 
-export function TokenIcon({ token, className }: { token: TokenSymbol | string, className?: string }) {
+export function TokenIcon({
+  token,
+  className,
+}: {
+  token: TokenSymbol | string;
+  className?: string;
+}) {
   const path = tokenIcons[token as TokenSymbol] || UNKNOWN_TOKEN_ICON;
 
-  return <img alt={`${token} token icon`} src={path} className={className} />
+  return <img alt={`${token} token icon`} src={path} className={className} />;
 }
 
 const UNKNOWN_TOKEN_ICON = '/svg/tokens/unknown.svg';

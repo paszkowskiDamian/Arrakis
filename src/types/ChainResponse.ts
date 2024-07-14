@@ -1,7 +1,7 @@
 export enum ResponseStatus {
   Success = 'success',
   Error = 'error',
-  Pending = 'pending'
+  Pending = 'pending',
 }
 
 interface SuccessfullResponse<T> {

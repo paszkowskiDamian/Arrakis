@@ -1,6 +1,6 @@
 export enum Chain {
   Ethereum = 'Ethereum',
-  Arbitrum = 'Arbitrum'
+  Arbitrum = 'Arbitrum',
 }
 
 export enum TokenSymbol {
@@ -8,5 +8,5 @@ export enum TokenSymbol {
   DAI = 'DAI',
   WSTETH = 'wsTETH',
   RETH = 'rETH',
-  WETH = 'WETH'
+  WETH = 'WETH',
 }

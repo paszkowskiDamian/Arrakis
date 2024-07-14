@@ -1,17 +1,17 @@
 'use client';
-import React, { useCallback, useState } from "react";
-import { useAccount } from "wagmi";
+import React, { useCallback, useState } from 'react';
+import { useAccount } from 'wagmi';
 
-import { VaultData } from "@/contractCalls/vault";
-import { Address, makeAddress } from "@/types/Address";
-import { DepositForm } from "@/components/form/DepositForm";
-import { ConfirmForm } from "@/components/form/ConfirmForm";
-import { FormState } from "@/components/form/FormState";
-import { AllowanceForm } from "@/components/form/AllowanceForm";
-import { makeTokenBalance } from "@/types/Token";
-import { cn } from "@/lib/utils";
-import { addLiquidity } from "@/contractCalls/router";
-import { Hash } from "@/types/Hash";
+import { VaultData } from '@/contractCalls/vault';
+import { Address, makeAddress } from '@/types/Address';
+import { DepositForm } from '@/components/form/DepositForm';
+import { ConfirmForm } from '@/components/form/ConfirmForm';
+import { FormState } from '@/components/form/FormState';
+import { AllowanceForm } from '@/components/form/AllowanceForm';
+import { makeTokenBalance } from '@/types/Token';
+import { cn } from '@/lib/utils';
+import { addLiquidity } from '@/contractCalls/router';
+import { Hash } from '@/types/Hash';
 
 enum FormStages {
   DepositForm = 'DepositForm',
@@ -19,7 +19,7 @@ enum FormStages {
   AllowanceToken1Form = 'AllowanceToken1Form',
   ConfirmForm = 'ConfirmForm',
   Success = 'Success',
-  Failure = 'Failure'
+  Failure = 'Failure',
 }
 
 interface FormProps {
@@ -28,12 +28,10 @@ interface FormProps {
 
 export function Form({ vaultData }: FormProps) {
   const [stage, setStage] = useState<FormStages>(FormStages.DepositForm);
-  const [formState, setFormState] = useState<FormState>(
-    {
-      token0Balance: makeTokenBalance(0n, vaultData.token0.token),
-      token1Balance: makeTokenBalance(0n, vaultData.token1.token)
-    }
-  );
+  const [formState, setFormState] = useState<FormState>({
+    token0Balance: makeTokenBalance(0n, vaultData.token0.token),
+    token1Balance: makeTokenBalance(0n, vaultData.token1.token),
+  });
 
   const user = useAccount();
   const userAddress = user.address && makeAddress(user.address);
@@ -60,18 +58,18 @@ export function Form({ vaultData }: FormProps) {
       formState.token0Balance,
       formState.token1Balance,
       vaultData.address,
-      userAddress,
-    )
+      userAddress
+    );
 
     return txHash;
   }, [formState, userAddress, vaultData]);
 
   const backToEdditing = useCallback(() => {
-    setStage(FormStages.DepositForm)
+    setStage(FormStages.DepositForm);
   }, []);
 
   return (
-    <div className="h-full relative">
+    <div className='h-full relative'>
       <FormBody
         stage={stage}
         vaultData={vaultData}
@@ -83,7 +81,7 @@ export function Form({ vaultData }: FormProps) {
         onConfirmFormSubmit={onConfirmFormSubmit}
         backToEdditing={backToEdditing}
       />
-      <div className="absolute bottom-0 right-0 left-0">
+      <div className='absolute bottom-0 right-0 left-0'>
         <FormStepper
           token0Symbol={vaultData.token0.token.symbol}
           token1Symbol={vaultData.token1.token.symbol}
@@ -91,7 +89,7 @@ export function Form({ vaultData }: FormProps) {
         />
       </div>
     </div>
-  )
+  );
 }
 
 interface FormBodyProps {
@@ -106,16 +104,57 @@ interface FormBodyProps {
   backToEdditing: () => void;
 }
 
-function FormBody({ formState, stage, userAddress, vaultData, onAllowance0Success, onAllowance1Success, onConfirmFormSubmit, onDepositFormSubmit, backToEdditing }: FormBodyProps) {
+function FormBody({
+  formState,
+  stage,
+  userAddress,
+  vaultData,
+  onAllowance0Success,
+  onAllowance1Success,
+  onConfirmFormSubmit,
+  onDepositFormSubmit,
+  backToEdditing,
+}: FormBodyProps) {
   switch (stage) {
     case FormStages.DepositForm:
-      return <DepositForm formState={formState} vaultData={vaultData} onSubmit={onDepositFormSubmit} user={userAddress} />;
+      return (
+        <DepositForm
+          formState={formState}
+          vaultData={vaultData}
+          onSubmit={onDepositFormSubmit}
+          user={userAddress}
+        />
+      );
     case FormStages.AllowanceToken0Form:
-      return userAddress && <AllowanceForm nextStep={onAllowance0Success} backToEdditing={backToEdditing} user={userAddress} tokenAmountToAllow={formState.token0Balance} />;
+      return (
+        userAddress && (
+          <AllowanceForm
+            nextStep={onAllowance0Success}
+            backToEdditing={backToEdditing}
+            user={userAddress}
+            tokenAmountToAllow={formState.token0Balance}
+          />
+        )
+      );
     case FormStages.AllowanceToken1Form:
-      return userAddress && <AllowanceForm nextStep={onAllowance1Success} backToEdditing={backToEdditing} user={userAddress} tokenAmountToAllow={formState.token1Balance} />;
+      return (
+        userAddress && (
+          <AllowanceForm
+            nextStep={onAllowance1Success}
+            backToEdditing={backToEdditing}
+            user={userAddress}
+            tokenAmountToAllow={formState.token1Balance}
+          />
+        )
+      );
     case FormStages.ConfirmForm:
-      return <ConfirmForm formState={formState} backToEdditing={backToEdditing} confirm={onConfirmFormSubmit} />;
+      return (
+        <ConfirmForm
+          formState={formState}
+          backToEdditing={backToEdditing}
+          confirm={onConfirmFormSubmit}
+        />
+      );
     case FormStages.Success:
       return <div>Success</div>;
     case FormStages.Failure:
@@ -129,13 +168,23 @@ interface FormStepperProps {
   token1Symbol: string;
 }
 
-function FormStepper({ currentStep, token0Symbol, token1Symbol }: FormStepperProps) {
+function FormStepper({
+  currentStep,
+  token0Symbol,
+  token1Symbol,
+}: FormStepperProps) {
   return (
-    <div className="flex">
-      <Step isActive={currentStep === FormStages.DepositForm} name="Deposit" />
-      <Step isActive={currentStep === FormStages.AllowanceToken0Form} name={`${token0Symbol} allowance`} />
-      <Step isActive={currentStep === FormStages.AllowanceToken1Form} name={`${token1Symbol} allowance`} />
-      <Step isActive={currentStep === FormStages.ConfirmForm} name="Confirm" />
+    <div className='flex'>
+      <Step isActive={currentStep === FormStages.DepositForm} name='Deposit' />
+      <Step
+        isActive={currentStep === FormStages.AllowanceToken0Form}
+        name={`${token0Symbol} allowance`}
+      />
+      <Step
+        isActive={currentStep === FormStages.AllowanceToken1Form}
+        name={`${token1Symbol} allowance`}
+      />
+      <Step isActive={currentStep === FormStages.ConfirmForm} name='Confirm' />
     </div>
   );
 }
@@ -153,11 +202,12 @@ function Step({ isActive, name }: StepProps) {
         ['bg-primary-300', 'm-1', 'text-primary-800', 'font-semibold'],
         ['flex', 'justify-center', 'items-center', 'rounded-lg'],
         ['duration-700'],
-        ['h-[2rem]']
-      ])}>
-      <span className={cn([
-        isActive ? ['opacity-100'] : ['opacity-0'], []
-      ])} >{name}</span>
+        ['h-[2rem]'],
+      ])}
+    >
+      <span className={cn([isActive ? ['opacity-100'] : ['opacity-0'], []])}>
+        {name}
+      </span>
     </div>
-  )
+  );
 }

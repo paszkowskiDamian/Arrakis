@@ -10,7 +10,8 @@ export function Header() {
       <AnimatedLogo />
       <div>
         <h2 className='text-light	text-center m-6'>
-          Unlock Your Liquidity’s <br />Greatest Potential
+          Unlock Your Liquidity’s <br />
+          Greatest Potential
         </h2>
       </div>
       <div className='mt-10'>

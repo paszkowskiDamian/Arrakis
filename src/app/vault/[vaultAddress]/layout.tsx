@@ -5,7 +5,6 @@ import '@/styles/globals.css';
 
 import { siteConfig } from '@/constants/config';
 
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -42,9 +41,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className='bg-dark min-h-screen'>
-      {children}
-    </div>
-  );
+  return <div className='bg-dark min-h-screen'>{children}</div>;
 }

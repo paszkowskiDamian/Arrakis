@@ -61,7 +61,7 @@ export default {
           '100%': {
             transform: 'rotate(363deg)',
           },
-        }
+        },
       },
       animation: {
         flicker: 'flicker 3s linear infinite',

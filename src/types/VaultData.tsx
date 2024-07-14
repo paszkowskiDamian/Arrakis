@@ -1,4 +1,4 @@
-import { Chain, TokenSymbol } from "@/types/Enums";
+import { Chain, TokenSymbol } from '@/types/Enums';
 
 export interface StaticVaultData {
   vaultAddress: string;
