@@ -5,11 +5,13 @@ import { useAccount } from "wagmi";
 import { VaultData } from "@/contractCalls/vault";
 import { Address, makeAddress } from "@/types/Address";
 import { DepositForm } from "@/components/form/DepositForm";
-import { ConfirmForm } from "@/components/form/ConfirmFormProps";
+import { ConfirmForm } from "@/components/form/ConfirmForm";
 import { FormState } from "@/components/form/FormState";
 import { AllowanceForm } from "@/components/form/AllowanceForm";
 import { makeTokenBalance } from "@/types/Token";
 import { cn } from "@/lib/utils";
+import { addLiquidity } from "@/contractCalls/router";
+import { Hash } from "@/types/Hash";
 
 enum FormStages {
   DepositForm = 'DepositForm',
@@ -49,8 +51,20 @@ export function Form({ vaultData }: FormProps) {
     setStage(FormStages.ConfirmForm);
   }, []);
 
-  const onConfirmFormSubmit = useCallback(() => {
-  }, []);
+  const onConfirmFormSubmit = useCallback(async () => {
+    if (!userAddress) {
+      throw new Error('User address is not defined');
+    }
+
+    const txHash = await addLiquidity(
+      formState.token0Balance,
+      formState.token1Balance,
+      vaultData.address,
+      userAddress,
+    )
+
+    return txHash;
+  }, [formState, userAddress, vaultData]);
 
   const backToEdditing = useCallback(() => {
     setStage(FormStages.DepositForm)
@@ -88,7 +102,7 @@ interface FormBodyProps {
   onDepositFormSubmit: (formState: FormState) => void;
   onAllowance0Success: () => void;
   onAllowance1Success: () => void;
-  onConfirmFormSubmit: () => void;
+  onConfirmFormSubmit: () => Promise<Hash>;
   backToEdditing: () => void;
 }
 

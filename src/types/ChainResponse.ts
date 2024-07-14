@@ -3,10 +3,12 @@ export enum ResponseStatus {
   Error = 'error',
   Pending = 'pending'
 }
+
 interface SuccessfullResponse<T> {
   status: ResponseStatus.Success;
   data: T;
 }
+
 interface ErrorResponse {
   status: ResponseStatus.Error;
 }
